@@ -62,7 +62,7 @@ namespace SchoolDiarySystem.Tests
 
             // Assert
             Assert.NotEmpty(students);
-            Assert.Contains(students, s => s.FullName == "Иванов Иван Иванович");
+            Assert.Contains(students, s => s.FullName == "Ivanov Ivan Ivanovich");
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace SchoolDiarySystem.Tests
 
             // Assert
             Assert.NotEmpty(students);
-            Assert.Contains(students, s => s.Student.FullName == "Петров Петр Петрович");
+            Assert.Contains(students, s => s.Student.FullName == "Petrov Petr Petrovich");
         }
 
         /// <summary>
@@ -110,13 +110,13 @@ namespace SchoolDiarySystem.Tests
             Assert.NotEmpty(statistics);
 
             // Проверка на наличие всех предметов в статистике
-            Assert.Contains(statistics, s => s.Subject.Name == "Математика");
-            Assert.Contains(statistics, s => s.Subject.Name == "Физика");
-            Assert.Contains(statistics, s => s.Subject.Name == "История");
-            Assert.Contains(statistics, s => s.Subject.Name == "Информатика");
+            Assert.Contains(statistics, s => s.Subject.Name == "Maths");
+            Assert.Contains(statistics, s => s.Subject.Name == "Physics");
+            Assert.Contains(statistics, s => s.Subject.Name == "History");
+            Assert.Contains(statistics, s => s.Subject.Name == "Computer Science");
 
             // Проверка диапазона оценок
-            var mathStats = statistics.FirstOrDefault(s => s.Subject.Name == "Математика");
+            var mathStats = statistics.FirstOrDefault(s => s.Subject.Name == "Maths");
             Assert.NotNull(mathStats);
             Assert.True(mathStats.MaxGrade >= mathStats.MinGrade, "Максимальная оценка должна быть больше или равна минимальной.");
         }
