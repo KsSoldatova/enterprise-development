@@ -21,9 +21,10 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore SchoolDiarySystem/SchoolDiarySystem.Tests/SchoolDiarySystem.Tests.csproj
+      run: dotnet restore SchoolDiarySystem/SchoolDiarySystem/SchoolDiarySystem.Domain.csproj
     - name: Build main project
       run: dotnet build SchoolDiarySystem/SchoolDiarySystem/SchoolDiarySystem.Domain.csproj --no-restore
-    - name: SchoolDiarySystem/SchoolDiarySystem.Tests/SchoolDiarySystem.Tests.csproj --no-restore
+    - name: Build test project
+      run: dotnet build SchoolDiarySystem/SchoolDiarySystem.Tests/SchoolDiarySystem.Tests.csproj --no-restore
     - name: Test
       run: dotnet test SchoolDiarySystem/SchoolDiarySystem.Tests/SchoolDiarySystem.Tests.csproj --no-build --verbosity normal
