@@ -14,8 +14,8 @@ namespace SchoolDiarySystem.Tests
             Repository = new SchoolRepository();
 
             // Äîáàâëÿåì êëàññû
-            var class1 = new SchoolClass { ClassId = 1, Number = 10, Letter = "À" };
-            var class2 = new SchoolClass { ClassId = 2, Number = 10, Letter = "Á" };
+            var class1 = new SchoolClass { ClassId = 1, Number = 10, Letter = "A" };
+            var class2 = new SchoolClass { ClassId = 2, Number = 10, Letter = "B" };
 
             Repository.Classes.AddRange(new List<SchoolClass>
             {
@@ -44,10 +44,10 @@ namespace SchoolDiarySystem.Tests
             // Äîáàâëÿåì ïðåäìåòû
             Repository.Subjects.AddRange(new List<Subject>
             {
-                new Subject { SubjectId = 1, Name = "Ìàòåìàòèêà", AcademicYear = 2024 },
-                new Subject { SubjectId = 2, Name = "Ôèçèêà", AcademicYear = 2024 },
-                new Subject { SubjectId = 3, Name = "Èñòîðèÿ", AcademicYear = 2024 },
-                new Subject { SubjectId = 4, Name = "Èíôîðìàòèêà", AcademicYear = 2024 }
+                new Subject { SubjectId = 1, Name = "Maths", AcademicYear = 2024 },
+                new Subject { SubjectId = 2, Name = "Physics", AcademicYear = 2024 },
+                new Subject { SubjectId = 3, Name = "History", AcademicYear = 2024 },
+                new Subject { SubjectId = 4, Name = "Computer Science", AcademicYear = 2024 }
             });
 
             // Äîáàâëÿåì îöåíêè
