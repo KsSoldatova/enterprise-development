@@ -8,7 +8,7 @@ public class SchoolClass
     /// <summary>
     /// Уникальный идентификатор класса (первичный ключ).
     /// </summary>
-    public int ClassId { get; set; }
+    public required int ClassId { get; set; }
 
     /// <summary>
     /// Номер класса (например, 10).

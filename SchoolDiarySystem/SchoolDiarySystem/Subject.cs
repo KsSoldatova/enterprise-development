@@ -8,7 +8,7 @@ public class Subject
     /// <summary>
     /// Уникальный идентификатор предмета (первичный ключ).
     /// </summary>
-    public int SubjectId { get; set; }
+    public required int SubjectId { get; set; }
 
     /// <summary>
     /// Название предмета.

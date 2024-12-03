@@ -8,8 +8,7 @@ public class Student
     /// <summary>
     /// Уникальный идентификатор ученика (первичный ключ).
     /// </summary>
-    public int StudentId { get; set; }
-
+    public required int StudentId { get; set; }
     /// <summary>
     /// Паспортные данные ученика.
     /// </summary>
@@ -28,5 +27,5 @@ public class Student
     /// <summary>
     /// Идентификатор класса ученика.
     /// </summary>
-    public int ClassId { get; set; }
+    public required int ClassId { get; set; }
 }

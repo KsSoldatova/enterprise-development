@@ -8,7 +8,7 @@ public class Grade
     /// <summary>
     /// Уникальный идентификатор оценки (первичный ключ).
     /// </summary>
-    public int GradeId { get; set; }
+    public required int GradeId { get; set; }
 
     /// <summary>
     /// Значение оценки.
@@ -18,12 +18,12 @@ public class Grade
     /// <summary>
     /// Идентификатор ученика, которому выставлена оценка.
     /// </summary>
-    public int StudentId { get; set; }
+    public required int StudentId { get; set; }
 
     /// <summary>
     /// Идентификатор предмета, по которому выставлена оценка.
     /// </summary>
-    public int SubjectId { get; set; }
+    public required int SubjectId { get; set; }
 
     /// <summary>
     /// Ссылка на предмет.

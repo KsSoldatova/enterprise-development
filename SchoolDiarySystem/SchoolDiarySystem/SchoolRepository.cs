@@ -13,10 +13,9 @@ public class SchoolRepository
     /// <summary>
     /// Получить список всех учеников указанного класса, список упорядочен по ФИО
     /// </summary>
-    public List<Student> GetStudentsByClass(int classId)
-    {
-        return Students.Where(s => s.ClassId == classId).OrderBy(s => s.FullName).ToList();
-    }
+    public List<Student> GetStudentsByClass(int classId) =>
+         Students.Where(s => s.ClassId == classId).OrderBy(s => s.FullName).ToList();
+    
 
     /// <summary>
     /// Добавить нового ученика в систему.
@@ -29,10 +28,9 @@ public class SchoolRepository
     /// <summary>
     /// Получить оценки ученика по указанному предмету.
     /// </summary>
-    public List<Grade> GetGradesByStudentAndSubject(int studentId, int subjectId)
-    {
-        return Grades.Where(g => g.StudentId == studentId && g.SubjectId == subjectId).ToList();
-    }
+    public List<Grade> GetGradesByStudentAndSubject(int studentId, int subjectId) =>
+         Grades.Where(g => g.StudentId == studentId && g.SubjectId == subjectId).ToList();
+    
 
     /// <summary>
     /// Добавить новую оценку в систему.
@@ -55,10 +53,9 @@ public class SchoolRepository
     /// <summary>
     /// Вывести информацию обо всех предметах.
     /// </summary>
-    public List<Subject> GetAllSubjects()
-    {
-        return Subjects.ToList();
-    }
+    public List<Subject> GetAllSubjects() =>
+      Subjects.ToList();
+    
 
 
     /// <summary>
