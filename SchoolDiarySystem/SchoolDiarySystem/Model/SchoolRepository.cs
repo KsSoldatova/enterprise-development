@@ -1,4 +1,4 @@
-﻿namespace SchoolDiarySystem.Domain;
+﻿namespace SchoolDiarySystem.Domain.Model;
 
 /// <summary>
 /// Репозиторий для работы с классами, учениками, предметами и оценками.
@@ -15,7 +15,7 @@ public class SchoolRepository
     /// </summary>
     public List<Student> GetStudentsByClass(int classId) =>
          Students.Where(s => s.ClassId == classId).OrderBy(s => s.FullName).ToList();
-    
+
 
     /// <summary>
     /// Добавить нового ученика в систему.
@@ -30,7 +30,7 @@ public class SchoolRepository
     /// </summary>
     public List<Grade> GetGradesByStudentAndSubject(int studentId, int subjectId) =>
          Grades.Where(g => g.StudentId == studentId && g.SubjectId == subjectId).ToList();
-    
+
 
     /// <summary>
     /// Добавить новую оценку в систему.
@@ -55,7 +55,7 @@ public class SchoolRepository
     /// </summary>
     public List<Subject> GetAllSubjects() =>
       Subjects.ToList();
-    
+
 
 
     /// <summary>

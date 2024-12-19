@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolDiarySystem.Tests", "
 		{05B5CCA1-B58F-4624-B085-9DD35AAFC43A} = {05B5CCA1-B58F-4624-B085-9DD35AAFC43A}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolDiarySystem.Api", "SchoolDiarySystem.Api\SchoolDiarySystem.Api.csproj", "{D296CCA2-8F0D-491E-9C49-E2517287847B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{1C60A1AC-ACEA-4083-8648-5ABACD50FB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C60A1AC-ACEA-4083-8648-5ABACD50FB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C60A1AC-ACEA-4083-8648-5ABACD50FB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D296CCA2-8F0D-491E-9C49-E2517287847B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D296CCA2-8F0D-491E-9C49-E2517287847B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D296CCA2-8F0D-491E-9C49-E2517287847B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D296CCA2-8F0D-491E-9C49-E2517287847B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

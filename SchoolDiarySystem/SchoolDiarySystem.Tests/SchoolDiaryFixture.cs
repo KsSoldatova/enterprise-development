@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using SchoolDiarySystem.Domain;
+using SchoolDiarySystem.Domain.Model;
 
 namespace SchoolDiarySystem.Tests
 {

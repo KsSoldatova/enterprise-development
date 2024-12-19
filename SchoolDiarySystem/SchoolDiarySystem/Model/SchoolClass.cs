@@ -1,4 +1,4 @@
-﻿namespace SchoolDiarySystem.Domain;
+﻿namespace SchoolDiarySystem.Domain.Model;
 
 /// <summary>
 /// Класс, представляющий класс учащихся.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Xunit;
-using SchoolDiarySystem.Domain;
+using SchoolDiarySystem.Domain.Model;
 
 namespace SchoolDiarySystem.Tests
 {
