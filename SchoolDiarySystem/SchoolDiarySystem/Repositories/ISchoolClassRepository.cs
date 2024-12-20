@@ -5,27 +5,8 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с школьными классами.
     /// </summary>
-    public class ISchoolClassRepository : IRepository<SchoolClass>
+    public class ISchoolClassRepository(List<SchoolClass> _classes) : IRepository<SchoolClass>
     {
-        private readonly List<SchoolClass> _classes;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ISchoolClassRepository"/>.
-        /// </summary>
-        public ISchoolClassRepository()
-        {
-            _classes = new List<SchoolClass>();
-        }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ISchoolClassRepository"/> с заданным списком классов.
-        /// </summary>
-        /// <param name="classes">Список классов для инициализации.</param>
-        public ISchoolClassRepository(List<SchoolClass> classes)
-        {
-            _classes = classes;
-        }
-
         /// <summary>
         /// Получает все школьные классы.
         /// </summary>

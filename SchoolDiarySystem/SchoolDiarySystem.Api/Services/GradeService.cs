@@ -9,22 +9,8 @@ namespace SchoolDiarySystem.Api.Services
     /// <summary>
     /// Сервис для работы с оценками.
     /// </summary>
-    public class GradeService : IService<GradeGetDto, GradePostDto>
+    public class GradeService(IMapper _mapper, IRepository<Grade> _graderepository) : IService<GradeGetDto, GradePostDto>
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<Grade> _graderepository;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="GradeService"/>.
-        /// </summary>
-        /// <param name="graderepository">Репозиторий для работы с оценками.</param>
-        /// <param name="mapper">Объект для преобразования между моделями и DTO.</param>
-        public GradeService(IRepository<Grade> graderepository, IMapper mapper)
-        {
-            _graderepository = graderepository;
-            _mapper = mapper;
-        }
-
         /// <summary>
         /// Получает все оценки.
         /// </summary>

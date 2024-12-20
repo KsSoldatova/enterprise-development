@@ -16,19 +16,15 @@ namespace SchoolDiarySystem.Api
         {
             // Настройка маппинга для студентов
             CreateMap<Student, StudentGetDto>().ReverseMap();
-            CreateMap<StudentPostDto, Student>();
 
             // Настройка маппинга для школьных классов
             CreateMap<SchoolClass, SchoolClassGetDto>().ReverseMap();
-            CreateMap<StudentPostDto, SchoolClass>();
 
             // Настройка маппинга для оценок
             CreateMap<Grade, GradeGetDto>().ReverseMap();
-            CreateMap<GradePostDto, Grade>();
 
             // Настройка маппинга для предметов
             CreateMap<Subject, SubjectGetDto>().ReverseMap();
-            CreateMap<SubjectPostDto, Subject>();
         }
     }
 }

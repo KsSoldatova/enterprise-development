@@ -5,27 +5,8 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с оценками.
     /// </summary>
-    public class IGradeRepository : IRepository<Grade>
+    public class IGradeRepository(List<Grade> _grades) : IRepository<Grade>
     {
-        private readonly List<Grade> _grades;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="IGradeRepository"/>.
-        /// </summary>
-        public IGradeRepository()
-        {
-            _grades = new List<Grade>();
-        }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="IGradeRepository"/> с заданным списком оценок.
-        /// </summary>
-        /// <param name="grades">Список оценок для инициализации.</param>
-        public IGradeRepository(List<Grade> grades)
-        {
-            _grades = grades;
-        }
-
         /// <summary>
         /// Получает все оценки.
         /// </summary>

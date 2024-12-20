@@ -8,22 +8,8 @@ namespace SchoolDiarySystem.Api.Services
     /// <summary>
     /// Сервис для работы с предметами.
     /// </summary>
-    public class SubjectService : IService<SubjectGetDto, SubjectPostDto>
+    public class SubjectService(IMapper _mapper, IRepository<Subject> _subjectrepository) : IService<SubjectGetDto, SubjectPostDto>
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<Subject> _subjectrepository;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="SubjectService"/>.
-        /// </summary>
-        /// <param name="subjectrepository">Репозиторий для работы с предметами.</param>
-        /// <param name="mapper">Объект для преобразования между моделями и DTO.</param>
-        public SubjectService(IRepository<Subject> subjectrepository, IMapper mapper)
-        {
-            _subjectrepository = subjectrepository;
-            _mapper = mapper;
-        }
-
         /// <summary>
         /// Получает все предметы.
         /// </summary>

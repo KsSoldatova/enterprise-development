@@ -1,4 +1,4 @@
-using System.Reflection;
+п»їusing System.Reflection;
 using SchoolDiarySystem.Api;
 using SchoolDiarySystem.Api.Services;
 using SchoolDiarySystem.Api.DTO;
@@ -9,11 +9,11 @@ using SchoolDiarySystem.Tests;
 var builder = WebApplication.CreateBuilder(args);
 
 
-//создание образа SchoolFixture
+//СЃРѕР·РґР°РЅРёРµ РѕР±СЂР°Р·Р° SchoolFixture
 
 var SchoolFixture = new SchoolFixture();
 
-//регистрация контроллеров
+//СЂРµРіРёСЃС‚СЂР°С†РёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -22,19 +22,19 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-//регистрация репозиториев
+//СЂРµРіРёСЃС‚СЂР°С†РёСЏ СЂРµРїРѕР·РёС‚РѕСЂРёРµРІ
 builder.Services.AddSingleton<IRepository<Student>>(new IStudentRepository(SchoolFixture.Repository.Students));
 builder.Services.AddSingleton<IRepository<SchoolClass>>(new ISchoolClassRepository(SchoolFixture.Repository.Classes));
 builder.Services.AddSingleton<IRepository<Subject>>(new ISubjectRepository(SchoolFixture.Repository.Subjects));
 builder.Services.AddSingleton<IRepository<Grade>>(new IGradeRepository(SchoolFixture.Repository.Grades));
 
-//регистрация сервисов и интерфейсов
+//СЂРµРіРёСЃС‚СЂР°С†РёСЏ СЃРµСЂРІРёСЃРѕРІ Рё РёРЅС‚РµСЂС„РµР№СЃРѕРІ
 builder.Services.AddScoped<IService<StudentGetDto, StudentPostDto>, StudentService>();
 builder.Services.AddScoped<IService<SchoolClassGetDto, SchoolClassPostDto>, SchoolClassService>();
 builder.Services.AddScoped<IService<GradeGetDto, GradePostDto>, GradeService>();
 builder.Services.AddScoped<IService<SubjectGetDto, SubjectPostDto>, SubjectService>();
 
-//регистрация AutoMapper
+//СЂРµРіРёСЃС‚СЂР°С†РёСЏ AutoMapper
 builder.Services.AddAutoMapper(typeof(Mapping));
 
 var app = builder.Build();

@@ -9,22 +9,8 @@ namespace SchoolDiarySystem.Api.Services
     /// <summary>
     /// Сервис для работы с школьными классами.
     /// </summary>
-    public class SchoolClassService : IService<SchoolClassGetDto, SchoolClassPostDto>
+    public class SchoolClassService(IMapper _mapper, IRepository<SchoolClass> _schoolclassrepository) : IService<SchoolClassGetDto, SchoolClassPostDto>
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<SchoolClass> _schoolclassrepository;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="SchoolClassService"/>.
-        /// </summary>
-        /// <param name="schoolclassrepository">Репозиторий для работы с школьными классами.</param>
-        /// <param name="mapper">Объект для преобразования между моделями и DTO.</param>
-        public SchoolClassService(IRepository<SchoolClass> schoolclassrepository, IMapper mapper)
-        {
-            _schoolclassrepository = schoolclassrepository;
-            _mapper = mapper;
-        }
-
         /// <summary>
         /// Получает все школьные классы.
         /// </summary>

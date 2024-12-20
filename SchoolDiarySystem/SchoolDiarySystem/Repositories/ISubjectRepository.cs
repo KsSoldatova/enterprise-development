@@ -8,27 +8,8 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с предметами.
     /// </summary>
-    public class ISubjectRepository : IRepository<Subject>
+    public class ISubjectRepository(List<Subject> _subjects) : IRepository<Subject>
     {
-        private readonly List<Subject> _subjects;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ISubjectRepository"/>.
-        /// </summary>
-        public ISubjectRepository()
-        {
-            _subjects = new List<Subject>();
-        }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ISubjectRepository"/> с заданным списком предметов.
-        /// </summary>
-        /// <param name="subjects">Список предметов для инициализации.</param>
-        public ISubjectRepository(List<Subject> subjects)
-        {
-            _subjects = subjects;
-        }
-
         /// <summary>
         /// Получает все предметы.
         /// </summary>

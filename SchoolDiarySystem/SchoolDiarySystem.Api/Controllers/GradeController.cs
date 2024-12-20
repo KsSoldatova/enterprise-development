@@ -82,7 +82,7 @@ namespace SchoolDiarySystem.Api.Controllers
         /// </summary>
         /// <param name="id">Идентификатор оценки для удаления.</param>
         /// <returns>Результат удаления.</returns>
-        /// <response code="200">Возвращает сообщение об успешном удалении.</response>
+        /// <response code="204">Возвращает сообщение об успешном удалении.</response>
         /// <response code="404">Если оценка не найдена.</response>
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
@@ -91,7 +91,7 @@ namespace SchoolDiarySystem.Api.Controllers
             if (!deletedGrade)
                 return NotFound($"Оценка с идентификатором {id} не найдена");
            
-            return Ok($"Оценка с идентификатором {id} удалена");
+            return NoContent();
         }
     }
 }

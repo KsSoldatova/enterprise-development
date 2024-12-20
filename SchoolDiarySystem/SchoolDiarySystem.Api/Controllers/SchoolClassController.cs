@@ -78,7 +78,7 @@ namespace SchoolDiarySystem.Api.Controllers
         /// </summary>
         /// <param name="id">Идентификатор школьного класса для удаления.</param>
         /// <returns>Результат удаления.</returns>
-        /// <response code="200">Возвращает сообщение об успешном удалении.</response>
+        /// <response code="204">Возвращает сообщение об успешном удалении.</response>
         /// <response code="404">Если школьный класс не найден.</response>
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
@@ -86,7 +86,7 @@ namespace SchoolDiarySystem.Api.Controllers
             var deletedSchoolClass = service.Delete(id);
             if (!deletedSchoolClass)
                 return NotFound($"Школьный класс с идентификатором {id} не найден");
-            return Ok($"Школьный класс с идентификатором {id} удален");
+            return NoContent();
         }
     }
 }

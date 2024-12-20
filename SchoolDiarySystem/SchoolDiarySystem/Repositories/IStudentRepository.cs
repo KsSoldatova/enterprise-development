@@ -8,27 +8,8 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы со студентами.
     /// </summary>
-    public class IStudentRepository : IRepository<Student>
+    public class IStudentRepository(List<Student> _students) : IRepository<Student>
     {
-        private readonly List<Student> _students;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="IStudentRepository"/>.
-        /// </summary>
-        public IStudentRepository()
-        {
-            _students = new List<Student>();
-        }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="IStudentRepository"/> с заданным списком студентов.
-        /// </summary>
-        /// <param name="students">Список студентов для инициализации.</param>
-        public IStudentRepository(List<Student> students)
-        {
-            _students = students;
-        }
-
         /// <summary>
         /// Получает всех студентов.
         /// </summary>

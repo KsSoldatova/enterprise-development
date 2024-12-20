@@ -8,22 +8,8 @@ namespace SchoolDiarySystem.Api.Services
     /// <summary>
     /// Сервис для работы со студентами.
     /// </summary>
-    public class StudentService : IService<StudentGetDto, StudentPostDto>
+    public class StudentService(IMapper _mapper, IRepository<Student> _studentrepository) : IService<StudentGetDto, StudentPostDto>
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<Student> _studentrepository;
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="StudentService"/>.
-        /// </summary>
-        /// <param name="studentrepository">Репозиторий для работы со студентами.</param>
-        /// <param name="mapper">Объект для преобразования между моделями и DTO.</param>
-        public StudentService(IRepository<Student> studentrepository, IMapper mapper)
-        {
-            _studentrepository = studentrepository;
-            _mapper = mapper;
-        }
-
         /// <summary>
         /// Получает всех студентов.
         /// </summary>

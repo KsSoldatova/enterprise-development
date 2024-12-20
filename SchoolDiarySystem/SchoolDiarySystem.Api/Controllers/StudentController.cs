@@ -82,7 +82,7 @@ namespace SchoolDiarySystem.Api.Controllers
         /// </summary>
         /// <param name="id">Идентификатор студента для удаления.</param>
         /// <returns>Результат удаления.</returns>
-        /// <response code="200">Возвращает сообщение об успешном удалении.</response>
+        /// <response code="204">Возвращает сообщение об успешном удалении.</response>
         /// <response code="404">Если студент не найден.</response>
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
@@ -91,7 +91,7 @@ namespace SchoolDiarySystem.Api.Controllers
             if (!deletedStudent)
                 return NotFound($"Студент с идентификатором {id} не найден");
 
-            return Ok($"Студент с идентификатором {id} удален");
+            return NoContent();
         }
     }
 }
