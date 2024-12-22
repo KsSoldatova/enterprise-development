@@ -1,22 +1,26 @@
 ﻿using SchoolDiarySystem.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace SchoolDiarySystem.Domain.Repositories
 {
     /// <summary>
     /// Репозиторий для работы со студентами.
     /// </summary>
-    public class IStudentRepository(List<Student> _students) : IRepository<Student>
+    public class IStudentRepository : IRepository<Student>
     {
+        private readonly SchoolDiaryContext _context;
+
+        public IStudentRepository(SchoolDiaryContext context)
+        {
+            _context = context;
+        }
         /// <summary>
         /// Получает всех студентов.
         /// </summary>
         /// <returns>Список всех студентов.</returns>
         public IEnumerable<Student> GetAll()
         {
-            return _students;
+            return _context.Students.ToList();
         }
 
         /// <summary>
@@ -26,7 +30,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Студент с заданным идентификатором или null, если не найден.</returns>
         public Student? GetById(int id)
         {
-            return _students.FirstOrDefault(s => s.StudentId == id);
+            return _context.Students.Find(id);
         }
 
         /// <summary>
@@ -36,10 +40,9 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Идентификатор добавленного студента.</returns>
         public int Post(Student student)
         {
-            var newId = _students.Count > 0 ? _students.Max(s => s.StudentId) + 1 : 1;
-            student.StudentId = newId;
-            _students.Add(student);
-            return newId;
+            _context.Students.Add(student);
+            _context.SaveChanges();
+            return student.StudentId;
         }
 
         /// <summary>
@@ -49,7 +52,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если студент был успешно обновлен; иначе false.</returns>
         public bool Put(Student student)
         {
-            var existingStudent = GetById(student.StudentId);
+            var existingStudent = _context.Students.Find(student.StudentId);
             if (existingStudent == null)
                 return false;
 
@@ -58,6 +61,7 @@ namespace SchoolDiarySystem.Domain.Repositories
             existingStudent.Passport = student.Passport;
             existingStudent.ClassId = student.ClassId;
 
+            _context.SaveChanges();
             return true;
         }
 
@@ -68,11 +72,12 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если студент был успешно удален; иначе false.</returns>
         public bool Delete(int id)
         {
-            var student = GetById(id);
+            var student = _context.Students.Find(id);
             if (student == null)
                 return false;
 
-            _students.Remove(student);
+            _context.Students.Remove(student);
+            _context.SaveChanges();
             return true;
         }
     }

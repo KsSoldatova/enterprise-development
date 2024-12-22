@@ -5,15 +5,20 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с оценками.
     /// </summary>
-    public class IGradeRepository(List<Grade> _grades) : IRepository<Grade>
+    public class IGradeRepository : IRepository<Grade>
     {
+        private readonly SchoolDiaryContext _context;
+        public IGradeRepository(SchoolDiaryContext context)
+        {
+            _context = context;
+        }
         /// <summary>
         /// Получает все оценки.
         /// </summary>
         /// <returns>Список всех оценок.</returns>
         public IEnumerable<Grade> GetAll()
         {
-            return _grades;
+            return _context.Grades.ToList();
         }
 
         /// <summary>
@@ -23,7 +28,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Оценка с заданным идентификатором или null, если не найдена.</returns>
         public Grade? GetById(int id)
         {
-            return _grades.FirstOrDefault(g => g.GradeId == id);
+            return _context.Grades.Find(id);
         }
 
         /// <summary>
@@ -33,10 +38,9 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Идентификатор добавленной оценки.</returns>
         public int Post(Grade grade)
         {
-            var newId = _grades.Count > 0 ? _grades.Max(g => g.GradeId) + 1 : 1;
-            grade.GradeId = newId;
-            _grades.Add(grade);
-            return newId;
+            _context.Grades.Add(grade);
+            _context.SaveChanges();
+            return grade.GradeId;
         }
 
         /// <summary>
@@ -46,7 +50,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если оценка была успешно обновлена; иначе false.</returns>
         public bool Put(Grade grade)
         {
-            var existingGrade = GetById(grade.GradeId);
+            var existingGrade = _context.Grades.Find(grade.GradeId);
             if (existingGrade == null)
                 return false;
 
@@ -54,6 +58,8 @@ namespace SchoolDiarySystem.Domain.Repositories
             existingGrade.SubjectId = grade.SubjectId;
             existingGrade.StudentId = grade.StudentId;
             existingGrade.Date = grade.Date;
+
+            _context.SaveChanges();
             return true;
         }
 
@@ -64,11 +70,12 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если оценка была успешно удалена; иначе false.</returns>
         public bool Delete(int id)
         {
-            var grade = GetById(id);
+            var grade = _context.Grades.Find(id);
             if (grade == null)
                 return false;
 
-            _grades.Remove(grade);
+            _context.Grades.Remove(grade);
+            _context.SaveChanges();
             return true;
         }
     }

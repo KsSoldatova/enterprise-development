@@ -5,9 +5,15 @@ using SchoolDiarySystem.Api.DTO;
 using SchoolDiarySystem.Domain.Model;
 using SchoolDiarySystem.Domain.Repositories;
 using SchoolDiarySystem.Tests;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using SchoolDiarySystem.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//var ConnectionString = builder.Configuration.GetConnectionString("MySql");
+builder.Services.AddDbContext<SchoolDiaryContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 2))));
 
 //создание образа SchoolFixture
 
@@ -23,10 +29,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 //регистрация репозиториев
-builder.Services.AddSingleton<IRepository<Student>>(new IStudentRepository(SchoolFixture.Repository.Students));
-builder.Services.AddSingleton<IRepository<SchoolClass>>(new ISchoolClassRepository(SchoolFixture.Repository.Classes));
-builder.Services.AddSingleton<IRepository<Subject>>(new ISubjectRepository(SchoolFixture.Repository.Subjects));
-builder.Services.AddSingleton<IRepository<Grade>>(new IGradeRepository(SchoolFixture.Repository.Grades));
+builder.Services.AddScoped<IRepository<Student>, IStudentRepository>();
+builder.Services.AddScoped<IRepository<SchoolClass>, ISchoolClassRepository>();
+builder.Services.AddScoped<IRepository<Subject>, ISubjectRepository>();
+builder.Services.AddScoped<IRepository<Grade>, IGradeRepository>();
+
 
 //регистрация сервисов и интерфейсов
 builder.Services.AddScoped<IService<StudentGetDto, StudentPostDto>, StudentService>();

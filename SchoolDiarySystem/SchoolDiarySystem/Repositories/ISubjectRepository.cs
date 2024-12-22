@@ -8,15 +8,23 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с предметами.
     /// </summary>
-    public class ISubjectRepository(List<Subject> _subjects) : IRepository<Subject>
+    public class ISubjectRepository : IRepository<Subject>
     {
+        private readonly SchoolDiaryContext _context;
+
+        public ISubjectRepository(SchoolDiaryContext context)
+        {
+            _context = context;
+        }
+
+
         /// <summary>
         /// Получает все предметы.
         /// </summary>
         /// <returns>Список всех предметов.</returns>
         public IEnumerable<Subject> GetAll()
         {
-            return _subjects;
+            return _context.Subjects.ToList();
         }
 
         /// <summary>
@@ -26,7 +34,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Предмет с заданным идентификатором или null, если не найден.</returns>
         public Subject? GetById(int id)
         {
-            return _subjects.FirstOrDefault(sub => sub.SubjectId == id);
+            return _context.Subjects.Find(id);
         }
 
         /// <summary>
@@ -36,10 +44,9 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Идентификатор добавленного предмета.</returns>
         public int Post(Subject subject)
         {
-            var newId = _subjects.Count > 0 ? _subjects.Max(sub => sub.SubjectId) + 1 : 1;
-            subject.SubjectId = newId;
-            _subjects.Add(subject);
-            return newId;
+            _context.Subjects.Add(subject);
+            _context.SaveChanges();
+            return subject.SubjectId;
         }
 
         /// <summary>
@@ -49,12 +56,14 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если предмет был успешно обновлен; иначе false.</returns>
         public bool Put(Subject subject)
         {
-            var existingSubject = GetById(subject.SubjectId);
+            var existingSubject = _context.Subjects.Find(subject.SubjectId);
             if (existingSubject == null)
                 return false;
 
             existingSubject.Name = subject.Name;
             existingSubject.AcademicYear = subject.AcademicYear;
+
+            _context.SaveChanges();
             return true;
         }
 
@@ -65,11 +74,12 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если предмет был успешно удален; иначе false.</returns>
         public bool Delete(int id)
         {
-            var subject = GetById(id);
+            var subject = _context.Subjects.Find(id);
             if (subject == null)
                 return false;
 
-            _subjects.Remove(subject);
+            _context.Subjects.Remove(subject);
+            _context.SaveChanges();
             return true;
         }
     }

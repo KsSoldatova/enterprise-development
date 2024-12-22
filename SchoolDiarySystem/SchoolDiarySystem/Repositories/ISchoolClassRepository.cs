@@ -5,15 +5,23 @@ namespace SchoolDiarySystem.Domain.Repositories
     /// <summary>
     /// Репозиторий для работы с школьными классами.
     /// </summary>
-    public class ISchoolClassRepository(List<SchoolClass> _classes) : IRepository<SchoolClass>
+    public class ISchoolClassRepository : IRepository<SchoolClass>
     {
+        private readonly SchoolDiaryContext _context;
+
+        public ISchoolClassRepository(SchoolDiaryContext context)
+        {
+            _context = context;
+        }
+
+
         /// <summary>
         /// Получает все школьные классы.
         /// </summary>
         /// <returns>Список всех школьных классов.</returns>
         public IEnumerable<SchoolClass> GetAll()
         {
-            return _classes;
+            return _context.SchoolClasses.ToList();
         }
 
         /// <summary>
@@ -23,7 +31,7 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Школьный класс с заданным идентификатором или null, если не найден.</returns>
         public SchoolClass? GetById(int id)
         {
-            return _classes.FirstOrDefault(c => c.ClassId == id);
+            return _context.SchoolClasses.Find(id);
         }
 
         /// <summary>
@@ -33,10 +41,9 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>Идентификатор добавленного школьного класса.</returns>
         public int Post(SchoolClass schoolClass)
         {
-            var newId = _classes.Count > 0 ? _classes.Max(c => c.ClassId) + 1 : 1;
-            schoolClass.ClassId = newId;
-            _classes.Add(schoolClass);
-            return newId;
+            _context.SchoolClasses.Add(schoolClass);
+            _context.SaveChanges();
+            return schoolClass.ClassId;
         }
 
         /// <summary>
@@ -46,13 +53,15 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если класс был успешно обновлен; иначе false.</returns>
         public bool Put(SchoolClass schoolClass)
         {
-            var existingClass = GetById(schoolClass.ClassId);
+            var existingClass = _context.SchoolClasses.Find(schoolClass.ClassId);
             if (existingClass == null)
                 return false;
 
             existingClass.Letter = schoolClass.Letter;
             existingClass.Number = schoolClass.Number;
             existingClass.Students = schoolClass.Students;
+
+            _context.SaveChanges();
             return true;
         }
 
@@ -63,11 +72,12 @@ namespace SchoolDiarySystem.Domain.Repositories
         /// <returns>True, если класс был успешно удален; иначе false.</returns>
         public bool Delete(int id)
         {
-            var schoolClass = GetById(id);
+            var schoolClass = _context.SchoolClasses.Find(id);
             if (schoolClass == null)
                 return false;
 
-            _classes.Remove(schoolClass);
+            _context.SchoolClasses.Remove(schoolClass);
+            _context.SaveChanges();
             return true;
         }
     }
