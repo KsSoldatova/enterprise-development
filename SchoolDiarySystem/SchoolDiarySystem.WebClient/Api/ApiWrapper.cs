@@ -22,5 +22,17 @@ public class ApiWrapper(IConfiguration configuration) : IApiWrapper
 
     #region SchoolClass
     public async Task<IEnumerable<SchoolClassGetDto>> GetAllSchoolClasses() => await client.SchoolClassAllAsync();
+    public async Task<SchoolClassGetDto> GetSchoolClass(int id) => await client.SchoolClassGETAsync(id);
+    public async Task<SchoolClassGetDto> AddSchoolClass(SchoolClassPostDto postDto) => await client.SchoolClassPOSTAsync(postDto);
+    public async Task<SchoolClassGetDto> UpdateSchoolClass(int id, SchoolClassPostDto postDto) => await client.SchoolClassPUTAsync(id, postDto);
+    public async Task DeleteSchoolClass(int id) => await client.SchoolClassDELETEAsync(id);
+    #endregion
+
+    #region Grade
+    public async Task<IEnumerable<GradeGetDto>> GetAllGrades() => await client.GradeAllAsync();
+    public async Task<GradeGetDto> GetGrade(int id) => await client.GradeGETAsync(id);
+    public async Task<GradeGetDto> AddGrade(GradePostDto postDto) => await client.GradePOSTAsync(postDto);
+    public async Task<GradeGetDto> UpdateGrade(int id, GradePostDto postDto) => await client.GradePUTAsync(id, postDto);
+    public async Task DeleteGrade(int id) => await client.GradeDELETEAsync(id);
     #endregion
 }

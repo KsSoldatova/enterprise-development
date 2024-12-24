@@ -8,7 +8,7 @@ public interface IApiWrapper
     Task DeleteSubject(int id);
     Task<IEnumerable<StudentGetDto>> GetAllStudents();
     Task<IEnumerable<SubjectGetDto>> GetAllSubjects();
-    public Task<IEnumerable<SchoolClassGetDto>> GetAllSchoolClasses();
+    Task<IEnumerable<SchoolClassGetDto>> GetAllSchoolClasses();
     Task<StudentGetDto> GetStudent(int id);
     Task<SubjectGetDto> GetSubject(int id);
     Task<StudentGetDto> UpdateStudent(int id, StudentPostDto postDto);
