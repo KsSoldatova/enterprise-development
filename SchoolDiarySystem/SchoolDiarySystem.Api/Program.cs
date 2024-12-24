@@ -44,6 +44,12 @@ builder.Services.AddScoped<IService<SubjectGetDto, SubjectPostDto>, SubjectServi
 //регистрация AutoMapper
 builder.Services.AddAutoMapper(typeof(Mapping));
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => {
+    policy.AllowAnyOrigin();
+    policy.AllowAnyMethod();
+    policy.AllowAnyHeader();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,6 +58,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
 app.MapControllers();

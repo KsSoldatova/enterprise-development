@@ -7,13 +7,14 @@ namespace SchoolDiarySystem.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjectController(IService<SubjectGetDto,SubjectPostDto> service) : ControllerBase
+    public class SubjectController(IService<SubjectGetDto, SubjectPostDto> service) : ControllerBase
     {
         /// <summary>
         /// Получает все предметы.
         /// </summary>
         /// <returns>Список всех предметов.</returns>
         [HttpGet]
+        [ProducesResponseType(200)]
         public ActionResult<IEnumerable<SubjectGetDto>> GetAll()
         {
             var subjects = service.GetAll();
@@ -28,6 +29,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="200">Возвращает предмет.</response>
         /// <response code="404">Если предмет не найден.</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public ActionResult<SubjectGetDto> GetById(int id)
         {
             var subject = service.GetById(id);
@@ -45,6 +48,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="201">Возвращает созданный предмет.</response>
         /// <response code="400">Если данные предмета некорректны.</response>
         [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(201)]
         public ActionResult<SubjectGetDto> Post([FromBody] SubjectPostDto value)
         {
             if (value == null)
@@ -65,6 +70,9 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="400">Если данные предмета некорректны.</response>
         /// <response code="404">Если предмет не найден.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public ActionResult<SubjectGetDto> Put(int id, [FromBody] SubjectPostDto updatedSubjectDto)
         {
             if (updatedSubjectDto == null)
@@ -85,6 +93,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="204">Возвращает сообщение об успешном удалении.</response>
         /// <response code="404">Если предмет не найден.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public ActionResult Delete(int id)
         {
             var deletedSubject = service.Delete(id);

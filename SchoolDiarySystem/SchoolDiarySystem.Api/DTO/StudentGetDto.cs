@@ -2,6 +2,8 @@
 {
     public class StudentGetDto
     {
+        public required int StudentId { get; set; }
+
         public required string Passport { get; set; }
 
         /// <summary>

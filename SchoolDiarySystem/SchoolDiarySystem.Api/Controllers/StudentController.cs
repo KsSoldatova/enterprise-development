@@ -14,6 +14,7 @@ namespace SchoolDiarySystem.Api.Controllers
         /// </summary>
         /// <returns>Список всех студентов.</returns>
         [HttpGet]
+        [ProducesResponseType(200)]
         public ActionResult<IEnumerable<StudentGetDto>> GetAll()
         {
             var students = service.GetAll();
@@ -28,6 +29,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="200">Возвращает студента.</response>
         /// <response code="404">Если студент не найден.</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public ActionResult<StudentGetDto> GetById(int id)
         {
             var student = service.GetById(id);
@@ -45,6 +48,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="201">Возвращает созданного студента.</response>
         /// <response code="400">Если данные студента некорректны.</response>
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public ActionResult<StudentGetDto> Post([FromBody] StudentPostDto value)
         {
             if (value == null)
@@ -65,6 +70,9 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="400">Если данные студента некорректны.</response>
         /// <response code="404">Если студент не найден.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public ActionResult<StudentGetDto> Put(int id, [FromBody] StudentPostDto updatedStudentDto)
         {
             if (updatedStudentDto == null)
@@ -85,6 +93,8 @@ namespace SchoolDiarySystem.Api.Controllers
         /// <response code="204">Возвращает сообщение об успешном удалении.</response>
         /// <response code="404">Если студент не найден.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public ActionResult Delete(int id)
         {
             var deletedStudent = service.Delete(id);

@@ -5,8 +5,13 @@ using System.Reflection.Emit;
 
 namespace SchoolDiarySystem.Domain
 {
-    public class SchoolDiaryContext(DbContextOptions<SchoolDiaryContext> options) : DbContext(options)
+    public class SchoolDiaryContext : DbContext
     {
+        public SchoolDiaryContext(DbContextOptions<SchoolDiaryContext> options) : base (options)
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<Grade> Grades { get; set; }
         public DbSet<SchoolClass> SchoolClasses { get; set; }
         public DbSet<Student> Students { get; set; }
